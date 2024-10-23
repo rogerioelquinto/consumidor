@@ -26,20 +26,6 @@ def gerar_graficos(df):
     fig = px.bar(df, x='UF', title="Distribuição por Estado (UF)")
     st.plotly_chart(fig)
 
-    st.subheader("Situação das Reclamações")
-    fig = px.pie(df, names='Situação', title="Situação das Reclamações")
-    st.plotly_chart(fig)
-
-# Função para gerar mapa
-def gerar_mapa(df):
-    st.subheader("Mapa de Reclamações por Cidade")
-    
-    # Aqui precisaremos de um shapefile ou base para mapear as cidades/regiões
-    # No exemplo abaixo, estou considerando o uso de geopy ou uma base customizada de cidades
-    gdf = gpd.GeoDataFrame(df, geometry=gpd.points_from_xy(df['Longitude'], df['Latitude']))  # Exemplo, se tivermos coordenadas
-    fig = px.scatter_geo(df, locations='Cidade', locationmode='country names', hover_name='Cidade', title="Reclamações por Cidade")
-    st.plotly_chart(fig)
-
 # Interface Streamlit
 st.title("Análise de Reclamações")
 
@@ -52,11 +38,8 @@ if file is not None:
     
     # Mostrar os primeiros registros
     st.write("Visualização da Amostra de Dados:")
-    st.write(df.head())
+    st.write(df)
     
     # Gerar gráficos
     gerar_graficos(df)
     
-    # Gerar mapa
-    if st.checkbox("Mostrar Mapa de Reclamações"):
-        gerar_mapa(df)
