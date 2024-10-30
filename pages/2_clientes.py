@@ -49,7 +49,7 @@ def gerar_graficos_clientes(df):
 # Interface da página
 st.title("Análise de Reclamações - Clientes")
 
-# Upload do arquivo CSV na barra lateral
+# Upload do arquivo CSV
 file = st.file_uploader("Envie o arquivo CSV", type=["csv"])
 
 # Se o arquivo for enviado, carrega e exibe os dados
